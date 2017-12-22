@@ -1,0 +1,12 @@
+<div class="container">
+  <form class="form-signin" [formGroup]="user" (ngSubmit)="zaloguj(user)">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="login" class="sr-only">Login</label>
+    <input formControlName="login" type="text" id="login" class="form-control" placeholder="Login...">
+    <label for="haslo" class="sr-only">Hasło</label>
+    <input formControlName="haslo" type="password" id="haslo" class="form-control" placeholder="Hasło...">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+    <pre>{{ user.value | json }}</pre>
+    <pre>{{ user.get('login').errors | json }}</pre>
+  </form>
+</div>
