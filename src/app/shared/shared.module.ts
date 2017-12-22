@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgBootstrapModule } from './modules/ng-bootstrap/ng-bootstrap.module';
 
 const providers = [];
 
@@ -12,15 +13,16 @@ const providers = [];
     RouterModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgBootstrapModule
   ],
-  declarations: [],
   exports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgBootstrapModule
   ]
 })
 export class SharedModule {
