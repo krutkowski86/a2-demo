@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -19,15 +19,9 @@ const routes: Routes = [
         component: DashboardComponent
       },
       {
-        path: 'profile',
-        component: UserProfileComponent,
-        children: [
-          {
-            path: '',
-            loadChildren:
-              'app/user/user-profile/user-profile.module#UserProfileModule'
-          }
-        ]
+        path: 'settings',
+        component: SettingsComponent,
+        loadChildren: 'app/user/settings/settings.module#SettingsModule'
       }
     ]
   }
