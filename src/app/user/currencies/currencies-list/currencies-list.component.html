@@ -1,0 +1,9 @@
+<p>
+  currencies-list works!
+</p>
+
+<ul>
+  <li *ngFor="let currency of currenciesList">
+    <img src="{{getCurrencyImage(currency.code)}}" class="img-thumbnail"> {{currency.code}}
+  </li>
+</ul>

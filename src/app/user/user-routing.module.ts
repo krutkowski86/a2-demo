@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
         path: 'settings',
         component: SettingsComponent,
         loadChildren: 'app/user/settings/settings.module#SettingsModule'
+      },
+      {
+        path: 'currencies',
+        component: CurrenciesComponent,
+        loadChildren: 'app/user/currencies/currencies.module#CurrenciesModule'
       }
     ]
   }
