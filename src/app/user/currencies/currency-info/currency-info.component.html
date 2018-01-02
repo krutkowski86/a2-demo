@@ -1,1 +1,15 @@
-<p>currency-info works!</p>
+<div class="row">
+    <div class="col-12">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="currencyTo">Chosen currency to:&nbsp;</label>
+                <select id="currencyTo" class="form-control" [formControl]="currencyTo">
+                    <option *ngFor="let currency of currencyToList" [ngValue]="currency">{{currency}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-12">
+
+    </div>
+</div>

@@ -1,4 +1,4 @@
-interface CURRENCY {
+export interface CURRENCY {
   priority: number;
   code: string;
   to: Array<string>;
