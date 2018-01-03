@@ -3,6 +3,7 @@ import { CurrenciesService } from '../currencies.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
+import { TICKER } from '../currencies.config';
 
 @Component({
   selector: 'app-currency-info',
@@ -14,6 +15,7 @@ export class CurrencyInfoComponent implements OnInit, OnDestroy {
   currentCurrency: string;
   params$: Subscription;
   currencyTo = new FormControl('PLN');
+  ticker: TICKER;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -29,13 +31,13 @@ export class CurrencyInfoComponent implements OnInit, OnDestroy {
       this._currenciesSrv
         .getTicker(this.currentCurrency, this.currencyTo.value)
         .then(data => {
-          console.log(data);
+          this.ticker = data;
         });
     });
 
     this.currencyTo.valueChanges.subscribe(value => {
       this._currenciesSrv.getTicker(this.currentCurrency, value).then(data => {
-        console.log(data);
+        this.ticker = data;
       });
     });
   }

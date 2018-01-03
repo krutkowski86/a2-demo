@@ -15,6 +15,13 @@ export interface TICKER {
   volume: number;
 }
 
+export interface TRADE {
+  date: number;
+  price: number;
+  amount: number;
+  tid: string;
+}
+
 export const CURRENCY_IMAGE =
   'https://bitbay.net/user/themes/bitbay/images/currency/';
 

@@ -1,3 +1,32 @@
-<p>
-  currency-trades works!
-</p>
+<div class="row">
+  <div class="col-12">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="currencyTo">To:&nbsp;</label>
+        <select id="currencyTo" class="form-control" [formControl]="currencyTo">
+          <option *ngFor="let currency of currencyToList" [ngValue]="currency">{{currency}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="col-12 mt-3">
+    <table class="table table-bordered table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">tid</th>
+          <th scope="col">Date</th>
+          <th scope="col">Price</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trade of trades">
+          <th scope="row">{{trade.tid}}</th>
+          <td>{{trade.date}}</td>
+          <td>{{trade.price}}</td>
+          <td>{{trade.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

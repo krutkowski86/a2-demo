@@ -3,7 +3,8 @@ import {
   CURRENCIES,
   CURRENCY_IMAGE,
   CURRENCY,
-  TICKER
+  TICKER,
+  TRADE
 } from './currencies.config';
 import * as _ from 'lodash';
 import { RestApiService } from '../../core/services/rest-api.service';
@@ -30,5 +31,10 @@ export class CurrenciesService {
   getTicker(currency: string, currencyTo: string) {
     const url = `https://bitbay.net/API/Public/${currency}${currencyTo}/ticker.json`;
     return this._http.get<TICKER>(url);
+  }
+
+  getTrades(currency: string, currencyTo: string) {
+    const url = `https://bitbay.net/API/Public/${currency}${currencyTo}/trades.json`;
+    return this._http.get<Array<TRADE>>(url);
   }
 }
