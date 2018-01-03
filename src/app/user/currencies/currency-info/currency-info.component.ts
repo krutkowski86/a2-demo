@@ -26,10 +26,17 @@ export class CurrencyInfoComponent implements OnInit, OnDestroy {
       this.currencyToList = this._currenciesSrv.getCurrenciesTo(
         this.currentCurrency
       );
+      this._currenciesSrv
+        .getTicker(this.currentCurrency, this.currencyTo.value)
+        .then(data => {
+          console.log(data);
+        });
     });
 
     this.currencyTo.valueChanges.subscribe(value => {
-      console.log(value);
+      this._currenciesSrv.getTicker(this.currentCurrency, value).then(data => {
+        console.log(data);
+      });
     });
   }
 

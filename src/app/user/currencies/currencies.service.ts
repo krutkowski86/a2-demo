@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CURRENCIES, CURRENCY_IMAGE, CURRENCY } from './currencies.config';
+import {
+  CURRENCIES,
+  CURRENCY_IMAGE,
+  CURRENCY,
+  TICKER
+} from './currencies.config';
 import * as _ from 'lodash';
+import { RestApiService } from '../../core/services/rest-api.service';
 
 @Injectable()
 export class CurrenciesService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: RestApiService) {}
 
   getCurrencies(): CURRENCY[] {
     return CURRENCIES;
@@ -20,5 +25,10 @@ export class CurrenciesService {
       code: currency
     });
     return currencyObj.to;
+  }
+
+  getTicker(currency: string, currencyTo: string) {
+    const url = `https://bitbay.net/API/Public/${currency}${currencyTo}/ticker.json`;
+    return this._http.get<TICKER>(url);
   }
 }

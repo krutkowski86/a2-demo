@@ -4,6 +4,17 @@ export interface CURRENCY {
   to: Array<string>;
 }
 
+export interface TICKER {
+  max: number;
+  min: number;
+  last: number;
+  bid: number;
+  ask: number;
+  vwap: number;
+  average: number;
+  volume: number;
+}
+
 export const CURRENCY_IMAGE =
   'https://bitbay.net/user/themes/bitbay/images/currency/';
 
