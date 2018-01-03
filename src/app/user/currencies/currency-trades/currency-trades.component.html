@@ -10,18 +10,21 @@
     </form>
   </div>
   <div class="col-12 mt-3">
+    <div class="form-group">
+      <input #tid type="text" (keyup)="0" class="form-control" placeholder="Enter tid">
+    </div>
     <table class="table table-bordered table-hover table-sm">
       <thead>
         <tr>
-          <th scope="col">tid</th>
-          <th scope="col">Date</th>
-          <th scope="col">Price</th>
-          <th scope="col">Amount</th>
+          <th>tid</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Amount</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trade of trades">
-          <th scope="row">{{trade.tid}}</th>
+        <tr *ngFor="let trade of trades | searchFilter: 'tid' : tid.value">
+          <th>{{trade.tid}}</th>
           <td>{{trade.date}}</td>
           <td>{{trade.price}}</td>
           <td>{{trade.amount}}</td>
