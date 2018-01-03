@@ -28,6 +28,10 @@ const routes: Routes = [
         path: 'currencies',
         component: CurrenciesComponent,
         loadChildren: 'app/user/currencies/currencies.module#CurrenciesModule'
+      },
+      {
+        path: 'forms',
+        loadChildren: 'app/user/forms/forms.module#FormsModule'
       }
     ]
   }
