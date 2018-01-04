@@ -1,11 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsComponent } from './forms.component';
+import { DaneosoboweComponent } from './daneosobowe/daneosobowe.component';
+import { FormsListComponent } from './forms-list/forms-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FormsComponent
+    component: FormsComponent,
+    children: [
+      {
+        path: '',
+        component: FormsListComponent
+      },
+      {
+        path: 'daneosobowe',
+        component: DaneosoboweComponent
+      }
+    ]
   }
 ];
 
