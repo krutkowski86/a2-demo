@@ -1,3 +1,104 @@
-<p>
-  daneosobowe works!
-</p>
+<form (ngSubmit)="onSubmit(daneosobowe);submitted = true" [formGroup]="daneosobowe" [class.ng-submitted]="submitted">
+  <div class="row">
+    <div class="col-sm-6">
+      <h6>UBEZPIECZAJĄCY</h6>
+      <div class="form-group">
+        <div class="row">
+          <label class="col-form-label col-sm-2 pt-0">Typ osoby</label>
+          <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="osoby.zub.typ" id="osoby.zub.typ.F" value="F" formControlName="osoby.zub.typ">
+              <label class="form-check-label" for="osoby.zub.typ.F">
+                Osoba fizyczna
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="osoby.zub.typ" id="osoby.zub.typ.P" value="P" formControlName="osoby.zub.typ">
+              <label class="form-check-label" for="osoby.zub.typ.P">
+                Osoba prawna
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.imie" class="col-sm-2 col-form-label">Imię</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.imie" name="osoby.zub.imie" formControlName="osoby.zub.imie">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.imie2" class="col-sm-2 col-form-label">Drugie imię</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.imie2" name="osoby.zub.imie2" formControlName="osoby.zub.imie2">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.nazwisko" class="col-sm-2 col-form-label">Nazwisko</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.nazwisko" name="osoby.zub.nazwisko" formControlName="osoby.zub.nazwisko">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.pesel" class="col-sm-2 col-form-label">PESEL</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.pesel" name="osoby.zub.pesel" formControlName="osoby.zub.pesel">
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="daneosobowe.controls['osoby.zub.typ'].value === 'F'">
+        <label for="osoby.zub.dataOtrzymaniaPrawaJazdy" class="col-sm-2 col-form-label">Data otrzymania prawa jazdy</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.dataOtrzymaniaPrawaJazdy" name="osoby.zub.dataOtrzymaniaPrawaJazdy"
+            formControlName="osoby.zub.dataOtrzymaniaPrawaJazdy">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.telefon" class="col-sm-2 col-form-label">Telefon</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.telefon" name="osoby.zub.telefon" formControlName="osoby.zub.telefon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.email" class="col-sm-2 col-form-label">E-mail</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.email" name="osoby.zub.email" formControlName="osoby.zub.email">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h6>Adres zamieszkania</h6>
+      <div class="form-group row">
+        <label for="osoby.zub.adresy.s.ulica" class="col-sm-2 col-form-label">Ulica</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.adresy.s.ulica" name="osoby.zub.adresy.s.ulica" formControlName="osoby.zub.adresy.s.ulica">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.adresy.s.nrDomu" class="col-sm-2 col-form-label">Numer domu</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.adresy.s.nrDomu" name="osoby.zub.adresy.s.nrDomu" formControlName="osoby.zub.adresy.s.nrDomu">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.adresy.s.nrMieszkania" class="col-sm-2 col-form-label">Numer mieszkania</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.adresy.s.nrMieszkania" name="osoby.zub.adresy.s.nrMieszkania" formControlName="osoby.zub.adresy.s.nrMieszkania">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.adresy.s.kodPocztowy" class="col-sm-2 col-form-label">Kod pocztowy</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.adresy.s.kodPocztowy" name="osoby.zub.adresy.s.kodPocztowy" formControlName="osoby.zub.adresy.s.kodPocztowy">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="osoby.zub.adresy.s.miasto" class="col-sm-2 col-form-label">Miejscowość</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="osoby.zub.adresy.s.miasto" name="osoby.zub.adresy.s.miasto" formControlName="osoby.zub.adresy.s.miasto">
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre>{{daneosobowe.value |json}}</pre>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
