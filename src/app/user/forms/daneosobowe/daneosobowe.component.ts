@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-
-interface ADRES {
-  typ: string;
-  ulica: string;
-  nrDomu: string;
-  nrMieszkania: string;
-  kodPocztowy: string;
-  miasto: string;
-}
+import { Adres } from '../adres/adres.config';
+import { FormsService } from '../forms.service';
+import { DaneosoboweFormModel } from './daneosobowe.config';
 
 @Component({
   selector: 'app-daneosobowe',
@@ -17,53 +11,33 @@ interface ADRES {
 })
 export class DaneosoboweComponent implements OnInit {
   daneosobowe: FormGroup;
-  constructor(private _fb: FormBuilder) {}
+  constructor(private _fb: FormBuilder, private _formService: FormsService) {
+    // this.daneosobowe = this._fb.group({
+    //   typ: [null, [Validators.required]],
+    //   imie: [null, [Validators.required]],
+    //   imie2: [null, [Validators.required]],
+    //   nazwisko: [null, [Validators.required]],
+    //   pesel: [null, [Validators.required]],
+    //   dataOtrzymaniaPrawaJazdy: [null, [Validators.required]],
+    //   telefon: [null, [Validators.required]],
+    //   email: [null, [Validators.required]],
+    // adresy: this._fb.array([])
+    // });
+    this.daneosobowe = this._fb.group(
+      this._formService.mapGroupFields(DaneosoboweFormModel)
+    );
 
-  ngOnInit() {
-    this.daneosobowe = this._fb.group({
-      'osoby.zub.typ': [null, [Validators.required]],
-      'osoby.zub.imie': [null, [Validators.required]],
-      'osoby.zub.imie2': [null, [Validators.required]],
-      'osoby.zub.nazwisko': [null, [Validators.required]],
-      'osoby.zub.pesel': [null, [Validators.required]],
-      'osoby.zub.dataOtrzymaniaPrawaJazdy': [null, [Validators.required]],
-      'osoby.zub.telefon': [null, [Validators.required]],
-      'osoby.zub.email': [null, [Validators.required]],
-      adresy: this._fb.array([])
+    console.log(this.daneosobowe);
+    const listaAdresow: Adres[] = [new Adres('K'), new Adres('S')];
+    // console.log(listaAdresow);
 
-      // this._fb.group({
-      //   ulica: [null, [Validators.required]],
-      //   nrDomu: [null, [Validators.required]],
-      //   nrMieszkania: [null, [Validators.required]],
-      //   kodPocztowy: [null, [Validators.required]],
-      //   miasto: [null, [Validators.required]]
-      // })
-    });
-
-    const listaAdresow: ADRES[] = [
-      {
-        typ: 'K',
-        kodPocztowy: '',
-        ulica: '',
-        nrDomu: '',
-        nrMieszkania: '',
-        miasto: ''
-      },
-      {
-        typ: 'S',
-        kodPocztowy: '',
-        ulica: '',
-        nrDomu: '',
-        nrMieszkania: '',
-        miasto: ''
-      }
-    ];
-
-    this.setAdresy(listaAdresow);
-    this.onAdresyChange();
+    // this.setAdresy(listaAdresow);
+    // this.onAdresyChange();
   }
 
-  private setAdresy(adresy: ADRES[]) {
+  ngOnInit() {}
+
+  private setAdresy(adresy: Adres[]) {
     const adresyFGs = adresy.map(adres => this._fb.group(adres));
     const adresyFormArray = this._fb.array(adresyFGs);
     this.daneosobowe.setControl('adresy', adresyFormArray);
