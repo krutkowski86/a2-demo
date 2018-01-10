@@ -32,21 +32,5 @@ export const DaneosoboweFormModel = {
   pesel: {},
   dataOtrzymaniaPrawaJazdy: {},
   telefon: {},
-  email: {},
-  adresy: {
-    type: 'array',
-    group: {
-      ulica: {
-        validators: [
-          {
-            key: 'required'
-          }
-        ]
-      },
-      nrDomu: {},
-      nrMieszkania: {},
-      kodPocztowy: {},
-      miasto: {}
-    }
-  }
+  email: {}
 };

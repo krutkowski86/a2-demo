@@ -8,3 +8,17 @@ export class Adres {
     public nrMieszkania?: string
   ) {}
 }
+
+export const AdresyFormModel = {
+  ulica: {
+    validators: [
+      {
+        key: 'required'
+      }
+    ]
+  },
+  nrDomu: {},
+  nrMieszkania: {},
+  kodPocztowy: {},
+  miasto: {}
+};

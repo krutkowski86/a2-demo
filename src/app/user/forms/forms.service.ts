@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
-import { FormArray } from '@angular/forms/src/model';
+import { Validators, FormArray, FormControl } from '@angular/forms';
 
 @Injectable()
 export class FormsService {
-  constructor(private _fb: FormBuilder) {}
-  mapGroupFields(fields) {
+  constructor() {}
+
+  initGroupControls(fields) {
     const group = {};
     Object.keys(fields)
       .map(field => {
@@ -13,9 +13,7 @@ export class FormsService {
       })
       .forEach(field => {
         const formField = this.mapField(field);
-        if (formField) {
-          group[field.key] = formField;
-        }
+        group[field.key] = formField;
       });
 
     return group;
@@ -23,27 +21,34 @@ export class FormsService {
 
   private mapField(field) {
     if (field.type === 'array') {
-      return new FormArray(this.mapGroupFields(field.group));
+      return new FormArray([]);
     } else {
-      return [field.init, this.mapValidators(field.validators)];
+      return this.formControl(field);
     }
   }
 
-  private mapValidators(validators: { key; value? }[] = []) {
-    const formValidators = [];
+  private formControl(field) {
+    return [
+      { value: field.init, disabled: false },
+      this.fieldValidators(field.validators)
+    ];
+  }
+
+  private fieldValidators(validators: { key; value? }[] = []) {
+    const outputValidators = [];
 
     validators.forEach(validator => {
       switch (validator.key) {
         case 'required': {
-          formValidators.push(Validators.required);
+          outputValidators.push(Validators.required);
           break;
         }
         case 'minLength': {
-          formValidators.push(Validators.minLength(validator.value));
+          outputValidators.push(Validators.minLength(validator.value));
         }
       }
     });
 
-    return formValidators;
+    return outputValidators;
   }
 }

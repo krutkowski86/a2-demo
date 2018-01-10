@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Adres } from '../adres/adres.config';
 import { FormsService } from '../forms.service';
@@ -10,7 +10,8 @@ import { DaneosoboweFormModel } from './daneosobowe.config';
   styleUrls: ['./daneosobowe.component.scss']
 })
 export class DaneosoboweComponent implements OnInit {
-  daneosobowe: FormGroup;
+  @Input() parentForm: FormGroup;
+
   constructor(private _fb: FormBuilder, private _formService: FormsService) {
     // this.daneosobowe = this._fb.group({
     //   typ: [null, [Validators.required]],
@@ -23,28 +24,27 @@ export class DaneosoboweComponent implements OnInit {
     //   email: [null, [Validators.required]],
     // adresy: this._fb.array([])
     // });
-    this.daneosobowe = this._fb.group(
-      this._formService.mapGroupFields(DaneosoboweFormModel)
-    );
-
-    console.log(this.daneosobowe);
-    const listaAdresow: Adres[] = [new Adres('K'), new Adres('S')];
+    // const listaAdresow: Adres[] = [new Adres('K'), new Adres('S')];C
     // console.log(listaAdresow);
-
     // this.setAdresy(listaAdresow);
     // this.onAdresyChange();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.parentForm.addControl('osoby', new FormArray([]));
+  }
+
+  // ngOnInit() {
+  //   const controls = this._formService.initGroupControls(DaneosoboweFormModel);
+  //   this.daneosobowe = this._fb.group(controls);
+
+  //   console.log(this.daneosobowe);
+  // }
 
   private setAdresy(adresy: Adres[]) {
     const adresyFGs = adresy.map(adres => this._fb.group(adres));
     const adresyFormArray = this._fb.array(adresyFGs);
     this.daneosobowe.setControl('adresy', adresyFormArray);
-  }
-
-  onSubmit({ value, valid }) {
-    console.log(value, valid);
   }
 
   get adresy(): FormArray {
