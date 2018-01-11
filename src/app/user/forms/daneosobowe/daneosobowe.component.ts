@@ -32,6 +32,7 @@ export class DaneosoboweComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.parentForm.addControl('osoby', new FormArray([]));
     // const osobyControl: FormArray = <FormArray>this.parentForm.controls.osoby;
     // const osobaFormGroup = this._formService.initGroupControls(this.viewConfig);
     // const osobaFormGroup = new FormGroup();
