@@ -11,6 +11,7 @@ import { ZlecComponent } from './zlec/zlec.component';
 import { Krok1Component } from './krok1/krok1.component';
 import { Krok2Component } from './krok2/krok2.component';
 import { ViewResolver } from './zlec/view-resolver.resolve';
+import { OsobaComponent } from './daneosobowe/osoba/osoba.component';
 
 @NgModule({
   imports: [SharedModule, FormsRoutingModule],
@@ -21,7 +22,8 @@ import { ViewResolver } from './zlec/view-resolver.resolve';
     AdresComponent,
     ZlecComponent,
     Krok1Component,
-    Krok2Component
+    Krok2Component,
+    OsobaComponent
   ],
   providers: [FormsService, ViewResolver]
 })

@@ -16,6 +16,7 @@ export class Osoba {
 
 export const DaneosoboweFormModel = {
   imie: {
+    disabled: true,
     validators: [
       {
         key: 'required'

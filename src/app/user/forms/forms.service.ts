@@ -5,6 +5,10 @@ import { Validators, FormArray, FormControl } from '@angular/forms';
 export class FormsService {
   constructor() {}
 
+  mapConfigView(view) {
+    return view;
+  }
+
   initGroupControls(fields) {
     const group = {};
     Object.keys(fields)
@@ -12,6 +16,7 @@ export class FormsService {
         return Object.assign({}, { key: field }, fields[field]);
       })
       .forEach(field => {
+        console.log(field);
         const formField = this.mapField(field);
         group[field.key] = formField;
       });

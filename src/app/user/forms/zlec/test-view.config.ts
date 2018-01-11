@@ -7,5 +7,26 @@ export const DaneosoboweView = {
   },
   telefon: {},
   email: {},
-  adresy: {}
+  adresy: [
+    {
+      typ: {
+        init: 'S'
+      },
+      ulica: {},
+      nrDomu: {},
+      nrMieszkania: {},
+      kodPocztowy: {},
+      miasto: {}
+    },
+    {
+      typ: {
+        init: 'K'
+      },
+      ulica: {},
+      nrDomu: {},
+      nrMieszkania: {},
+      kodPocztowy: {},
+      miasto: {}
+    }
+  ]
 };

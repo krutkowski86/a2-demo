@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { FormsService } from '../forms.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,10 +16,14 @@ export class Krok1Component implements OnInit {
     private _route: ActivatedRoute,
     private _fb: FormBuilder,
     private _formService: FormsService
-  ) {}
+  ) {
+    this.krok1Form = this._fb.group({});
+  }
 
   ngOnInit() {
-    this.viewConfig = this._route.snapshot.parent.data['viewConfig'];
+    this.viewConfig = this._formService.mapConfigView(
+      this._route.snapshot.parent.data['viewConfig']
+    );
     console.log(this.viewConfig);
   }
 

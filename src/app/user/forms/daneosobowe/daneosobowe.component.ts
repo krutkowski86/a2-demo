@@ -11,9 +11,10 @@ import { DaneosoboweFormModel } from './daneosobowe.config';
 })
 export class DaneosoboweComponent implements OnInit {
   @Input() parentForm: FormGroup;
+  @Input() viewConfig: any;
 
   constructor(private _fb: FormBuilder, private _formService: FormsService) {
-    // this.daneosobowe = this._fb.group({
+    // this.daneosobowe = this._fb.group({});
     //   typ: [null, [Validators.required]],
     //   imie: [null, [Validators.required]],
     //   imie2: [null, [Validators.required]],
@@ -31,7 +32,11 @@ export class DaneosoboweComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.parentForm.addControl('osoby', new FormArray([]));
+    // const osobyControl: FormArray = <FormArray>this.parentForm.controls.osoby;
+    // const osobaFormGroup = this._formService.initGroupControls(this.viewConfig);
+    // const osobaFormGroup = new FormGroup();
+    // console.log(osobaFormGroup);
+    // osobyControl.push(osobaFormGroup);
   }
 
   // ngOnInit() {
@@ -41,18 +46,18 @@ export class DaneosoboweComponent implements OnInit {
   //   console.log(this.daneosobowe);
   // }
 
-  private setAdresy(adresy: Adres[]) {
-    const adresyFGs = adresy.map(adres => this._fb.group(adres));
-    const adresyFormArray = this._fb.array(adresyFGs);
-    this.daneosobowe.setControl('adresy', adresyFormArray);
-  }
+  // private setAdresy(adresy: Adres[]) {
+  //   const adresyFGs = adresy.map(adres => this._fb.group(adres));
+  //   const adresyFormArray = this._fb.array(adresyFGs);
+  //   this.daneosobowe.setControl('adresy', adresyFormArray);
+  // }
 
-  get adresy(): FormArray {
-    return this.daneosobowe.get('adresy') as FormArray;
-  }
+  // get adresy(): FormArray {
+  //   return this.daneosobowe.get('adresy') as FormArray;
+  // }
 
-  private onAdresyChange() {
-    const adresyControl = this.daneosobowe.get('adresy');
-    adresyControl.valueChanges.forEach(value => console.log(value));
-  }
+  // private onAdresyChange() {
+  //   const adresyControl = this.daneosobowe.get('adresy');
+  //   adresyControl.valueChanges.forEach(value => console.log(value));
+  // }
 }
