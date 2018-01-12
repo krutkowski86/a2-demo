@@ -1,5 +1,8 @@
 <form (ngSubmit)="onSubmit(krok1Form);submitted = true" [formGroup]="krok1Form" [class.ng-submitted]="submitted">
-  <app-daneosobowe [parentForm]="krok1Form" [viewConfig]="viewConfig"></app-daneosobowe>
-  <pre>{{krok1Form.value |json}}</pre>
+  <div *ngIf="viewConfig.sekcje.daneosobowe">
+    <h5>Dane osobowe</h5>
+    <app-daneosobowe [parentForm]="krok1Form" [viewConfig]="viewConfig.sekcje.daneosobowe"></app-daneosobowe>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
+  <pre>{{krok1Form.value |json}}</pre>
 </form>

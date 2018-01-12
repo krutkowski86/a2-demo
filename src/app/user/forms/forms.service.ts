@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms/src/model';
 
 @Injectable()
 export class FormsService {
@@ -9,19 +10,24 @@ export class FormsService {
     return view;
   }
 
-  initGroupControls(fields) {
-    const group = {};
+  initGroupControls(formGroup: FormGroup, fields) {
     Object.keys(fields)
-      .map(field => {
-        return Object.assign({}, { key: field }, fields[field]);
-      })
+      .map(field => Object.assign({}, { key: field }, fields[field]))
       .forEach(field => {
-        console.log(field);
-        const formField = this.mapField(field);
-        group[field.key] = formField;
+        let control: FormControl;
+        if (field.disabled) {
+          control = new FormControl({
+            value: field.init || '',
+            disabled: true
+          });
+        } else {
+          control = new FormControl(field.init || '', {
+            validators: this.fieldValidators(field.validators),
+            updateOn: 'blur'
+          });
+        }
+        formGroup.addControl(field.key, control);
       });
-
-    return group;
   }
 
   private mapField(field) {

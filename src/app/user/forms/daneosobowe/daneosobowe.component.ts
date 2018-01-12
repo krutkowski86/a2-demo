@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Adres } from '../adres/adres.config';
 import { FormsService } from '../forms.service';
 import { DaneosoboweFormModel } from './daneosobowe.config';
+import { FormControl } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-daneosobowe',
@@ -32,20 +33,18 @@ export class DaneosoboweComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.viewConfig);
     this.parentForm.addControl('osoby', new FormArray([]));
-    // const osobyControl: FormArray = <FormArray>this.parentForm.controls.osoby;
-    // const osobaFormGroup = this._formService.initGroupControls(this.viewConfig);
-    // const osobaFormGroup = new FormGroup();
-    // console.log(osobaFormGroup);
-    // osobyControl.push(osobaFormGroup);
+    const osobyControl: FormArray = <FormArray>this.parentForm.controls.osoby;
+    const osobaFormGroup = new FormGroup({});
+    this._formService.initGroupControls(osobaFormGroup, this.viewConfig.pola);
+    osobyControl.push(osobaFormGroup);
+    console.log(osobaFormGroup);
   }
 
-  // ngOnInit() {
-  //   const controls = this._formService.initGroupControls(DaneosoboweFormModel);
-  //   this.daneosobowe = this._fb.group(controls);
-
-  //   console.log(this.daneosobowe);
-  // }
+  disableField(field: FormControl) {
+    field.disable();
+  }
 
   // private setAdresy(adresy: Adres[]) {
   //   const adresyFGs = adresy.map(adres => this._fb.group(adres));
@@ -53,9 +52,9 @@ export class DaneosoboweComponent implements OnInit {
   //   this.daneosobowe.setControl('adresy', adresyFormArray);
   // }
 
-  // get adresy(): FormArray {
-  //   return this.daneosobowe.get('adresy') as FormArray;
-  // }
+  get osoby(): FormArray {
+    return this.parentForm.get('osoby') as FormArray;
+  }
 
   // private onAdresyChange() {
   //   const adresyControl = this.daneosobowe.get('adresy');

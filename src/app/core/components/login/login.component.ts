@@ -12,9 +12,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user = this._fb.group({
-      login: ['', Validators.required],
-      haslo: ['', Validators.required]
+      login: ['test', [Validators.required, Validators.minLength(5)]],
+      haslo: ['', Validators.required],
+      test: this._fb.group({
+        abc: ''
+      })
     });
+
+    this.user.valueChanges.forEach(value => {
+      console.log(value);
+    });
+
+    setTimeout(() => {
+      this.user.controls.login.patchValue('abs');
+    }, 3000);
   }
 
   zaloguj() {}

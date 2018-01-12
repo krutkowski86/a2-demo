@@ -10,7 +10,8 @@ export class AdresComponent implements OnInit {
   @Input() parentForm: FormGroup;
 
   ngOnInit() {
-    this.parentForm.addControl('adresy', new FormArray([]));
+    // this.parentForm.addControl('adresy', new FormArray([]));
+    console.log(this.parentForm);
   }
 
   // get adresy(): FormArray {

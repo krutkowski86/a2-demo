@@ -1,32 +1,63 @@
 export const DaneosoboweView = {
-  imie: {},
-  nazwisko: {},
-  pesel: {},
-  dataUrodzenia: {
-    disabled: true
-  },
-  telefon: {},
-  email: {},
-  adresy: [
-    {
-      typ: {
-        init: 'S'
+  sekcje: {
+    daneosobowe: {
+      pola: {
+        typ: {
+          init: 'F'
+        },
+        imie: {
+          disabled: true,
+          init: 'Stefan',
+          validators: [
+            {
+              key: 'required'
+            }
+          ]
+        },
+        imie2: {},
+        nazwisko: {},
+        pesel: {},
+        dataOtrzymaniaPrawaJazdy: {},
+        telefon: {},
+        email: {}
       },
-      ulica: {},
-      nrDomu: {},
-      nrMieszkania: {},
-      kodPocztowy: {},
-      miasto: {}
+      sekcje: {
+        adresy: [
+          {
+            pola: {
+              typ: {
+                init: 'K'
+              },
+              ulica: {},
+              nrDomu: {},
+              nrMieszkania: {},
+              kodPocztowy: {},
+              miasto: {}
+            }
+          },
+          {
+            pola: {
+              typ: {
+                init: 'S'
+              },
+              ulica: {},
+              nrDomu: {},
+              nrMieszkania: {},
+              kodPocztowy: {},
+              miasto: {}
+            }
+          }
+        ]
+      }
     },
-    {
-      typ: {
-        init: 'K'
-      },
-      ulica: {},
-      nrDomu: {},
-      nrMieszkania: {},
-      kodPocztowy: {},
-      miasto: {}
+    adresy: {
+      pola: {
+        ulica: {},
+        nrDomu: {},
+        nrMieszkania: {},
+        kodPocztowy: {},
+        miasto: {}
+      }
     }
-  ]
+  }
 };
