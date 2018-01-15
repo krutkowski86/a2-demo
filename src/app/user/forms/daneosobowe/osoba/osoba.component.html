@@ -64,8 +64,16 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6" *ngIf="viewConfig.sekcje.adresy">
-      <app-adres-form *ngFor="let adres of adresy?.controls" [parentForm]="adres"></app-adres-form>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-primary" (click)="dodajAdres()">Dodaj adres</button>
+      <div class="row" *ngFor="let adres of adresy?.controls;let i = index">
+        <div class="col-12">
+          <div class="text-right">
+            <button type="buttom" class="btn btn-danger" (click)="usunAdres(i)">X</button>
+          </div>
+          <app-adres-form [parentForm]="adres"></app-adres-form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

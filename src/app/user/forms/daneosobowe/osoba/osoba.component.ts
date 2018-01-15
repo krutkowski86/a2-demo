@@ -15,8 +15,6 @@ export class OsobaComponent implements OnInit {
   constructor(private _formService: FormsService) {}
 
   ngOnInit() {
-    console.log(this.parentForm);
-    console.log(this.viewConfig);
     if (this.viewConfig.sekcje && this.viewConfig.sekcje.adresy) {
       this.parentForm.addControl('adresy', new FormArray([]));
       const adresyControl: FormArray = <FormArray>this.parentForm.controls
@@ -36,5 +34,17 @@ export class OsobaComponent implements OnInit {
 
   get adresy(): FormArray {
     return this.parentForm.get('adresy') as FormArray;
+  }
+
+  dodajAdres() {
+    const adresyControl: FormArray = <FormArray>this.parentForm.controls.adresy;
+    const adresK = this.viewConfig.sekcje.adresy[0];
+    const adresFormGroup = new FormGroup({});
+    this._formService.initGroupControls(adresFormGroup, adresK.pola);
+    adresyControl.push(adresFormGroup);
+  }
+
+  usunAdres(index) {
+    (<FormArray>this.parentForm.get('adresy')).removeAt(index);
   }
 }

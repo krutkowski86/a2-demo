@@ -19,26 +19,9 @@ export class DaneosoboweComponent implements OnInit {
   @Input() parentForm: FormGroup;
   @Input() viewConfig: any;
 
-  constructor(private _fb: FormBuilder, private _formService: FormsService) {
-    // this.daneosobowe = this._fb.group({});
-    //   typ: [null, [Validators.required]],
-    //   imie: [null, [Validators.required]],
-    //   imie2: [null, [Validators.required]],
-    //   nazwisko: [null, [Validators.required]],
-    //   pesel: [null, [Validators.required]],
-    //   dataOtrzymaniaPrawaJazdy: [null, [Validators.required]],
-    //   telefon: [null, [Validators.required]],
-    //   email: [null, [Validators.required]],
-    // adresy: this._fb.array([])
-    // });
-    // const listaAdresow: Adres[] = [new Adres('K'), new Adres('S')];C
-    // console.log(listaAdresow);
-    // this.setAdresy(listaAdresow);
-    // this.onAdresyChange();
-  }
+  constructor(private _fb: FormBuilder, private _formService: FormsService) {}
 
   ngOnInit() {
-    console.log(this.viewConfig);
     this.parentForm.addControl('osoby', new FormArray([]));
 
     const osobyControl: FormArray = <FormArray>this.parentForm.controls.osoby;
@@ -47,24 +30,24 @@ export class DaneosoboweComponent implements OnInit {
     osobyControl.push(osobaFormGroup);
 
     this.parentForm.addControl('_sys_czyUbezp', new FormControl());
-  }
 
-  disableField(field: FormControl) {
-    field.disable();
+    this.parentForm.controls._sys_czyUbezp.valueChanges.subscribe(
+      fieldValue => {
+        if (fieldValue) {
+          const newOsobaFormGroup = new FormGroup({});
+          this._formService.initGroupControls(
+            newOsobaFormGroup,
+            this.viewConfig.pola
+          );
+          osobyControl.push(newOsobaFormGroup);
+        } else {
+          console.log('usuń ubezp');
+        }
+      }
+    );
   }
-
-  // private setAdresy(adresy: Adres[]) {
-  //   const adresyFGs = adresy.map(adres => this._fb.group(adres));
-  //   const adresyFormArray = this._fb.array(adresyFGs);
-  //   this.daneosobowe.setControl('adresy', adresyFormArray);
-  // }
 
   get osoby(): FormArray {
     return this.parentForm.get('osoby') as FormArray;
   }
-
-  // private onAdresyChange() {
-  //   const adresyControl = this.daneosobowe.get('adresy');
-  //   adresyControl.valueChanges.forEach(value => console.log(value));
-  // }
 }

@@ -4,5 +4,13 @@
     <app-daneosobowe [parentForm]="krok1Form" [viewConfig]="viewConfig.sekcje.daneosobowe"></app-daneosobowe>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-  <pre>{{krok1Form.value |json}}</pre>
+  <div class="row">
+    <div class="col-6">
+      <pre>{{krok1Form.value |json}}</pre>
+    </div>
+    <div class="col-6">
+      <pre>{{model |json}}</pre>
+    </div>
+  </div>
+
 </form>

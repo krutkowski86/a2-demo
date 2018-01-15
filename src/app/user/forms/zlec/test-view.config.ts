@@ -28,9 +28,18 @@ export const DaneosoboweView = {
               typ: {
                 init: 'K'
               },
-              ulica: {},
+              ulica: {
+                disabled: true,
+                init: 'Polna'
+              },
               nrDomu: {},
-              nrMieszkania: {},
+              nrMieszkania: {
+                validators: [
+                  {
+                    key: 'required'
+                  }
+                ]
+              },
               kodPocztowy: {},
               miasto: {}
             }

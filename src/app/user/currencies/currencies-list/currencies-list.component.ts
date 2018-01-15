@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrenciesService } from '../currencies.service';
-import * as _ from 'lodash';
+import { orderBy } from 'lodash';
 
 @Component({
   selector: 'app-currencies-list',
@@ -14,7 +14,7 @@ export class CurrenciesListComponent implements OnInit {
   constructor(private _currenciesSrv: CurrenciesService) {}
 
   ngOnInit() {
-    this.currenciesList = _.orderBy(
+    this.currenciesList = orderBy(
       this._currenciesSrv.getCurrencies(),
       ['priority'],
       ['asc']
