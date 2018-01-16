@@ -1,0 +1,26 @@
+{
+  "osoby": [
+    {
+      "typ": "UBE",
+      "cis": "",
+      "imie": "",
+      "nazwisko": "",
+      "pesel": "",
+      "dataUrodzenia": "",
+      "telefon": "",
+      "email": "",
+      "adresy": [
+        {
+          "typAdresu": "S",
+          "ulica": "",
+          "nrDomu": "",
+          "nrMieszkania": "",
+          "kodPocztowy": "",
+          "miasto": ""
+        }
+      ],
+      "zgodaPrzetwarzanie": ""
+    }
+  ],
+  "_sys_czyUbezpieczajacyToUbezpieczony": ""
+}

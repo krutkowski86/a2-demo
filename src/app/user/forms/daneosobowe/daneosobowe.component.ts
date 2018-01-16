@@ -9,6 +9,7 @@ import {
 import { Adres } from '../adres/adres.config';
 import { FormsService } from '../forms.service';
 import { DaneosoboweFormModel } from './daneosobowe.config';
+import { viewClassName } from '@angular/compiler';
 
 @Component({
   selector: 'app-daneosobowe',
@@ -22,6 +23,7 @@ export class DaneosoboweComponent implements OnInit {
   constructor(private _fb: FormBuilder, private _formService: FormsService) {}
 
   ngOnInit() {
+    console.log(this.viewConfig);
     this.parentForm.addControl('osoby', new FormArray([]));
 
     const osobyControl: FormArray = <FormArray>this.parentForm.controls.osoby;
