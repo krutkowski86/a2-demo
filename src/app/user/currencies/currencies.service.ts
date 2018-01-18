@@ -6,7 +6,7 @@ import {
   TICKER,
   TRADE
 } from './currencies.config';
-import * as _ from 'lodash';
+import find from 'lodash/find';
 import { RestApiService } from '../../core/services/rest-api.service';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class CurrenciesService {
   }
 
   getCurrenciesTo(currency: string): Array<string> {
-    const currencyObj = _.find(this.getCurrencies(), {
+    const currencyObj = find(this.getCurrencies(), {
       code: currency
     });
     return currencyObj.to;

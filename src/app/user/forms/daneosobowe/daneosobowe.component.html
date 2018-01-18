@@ -1,5 +1,16 @@
 <div [formGroup]="parentForm">
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" (click)="dodajOsobe('UBE')">Dodaj osobę typu UBE</button>
+      <button type="button" class="btn btn-primary" (click)="dodajOsobe('ZUB')">Dodaj osobę typu ZUB</button>
+    </div>
+  </div>
   <div *ngFor="let osoba of osoby?.controls; let i = index">
+    <div class="row">
+      <div class="col-12 text-right">
+        <button type="button" class="btn btn-danger" (click)="usunOsobe(i)">Usuń osobę</button>
+      </div>
+    </div>
     <app-osoba [parentForm]="osoba" [viewConfig]="viewConfig"></app-osoba>
     <div class="col-12" *ngIf="i === 0">
       <div class="form-group">

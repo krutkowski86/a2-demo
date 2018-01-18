@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { FormsService } from '../forms.service';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash';
+import isArray from 'lodash/isArray';
+import isPlainObject from 'lodash/isPlainObject';
+import find from 'lodash/find';
+import mergeWith from 'lodash/mergeWith';
 
 @Component({
   selector: 'app-krok1',
@@ -35,7 +38,7 @@ export class Krok1Component implements OnInit {
 
   onSubmit({ value, valid }) {
     if (valid) {
-      this.model = _.mergeWith(
+      this.model = mergeWith(
         this.model,
         this.krok1Form.getRawValue(),
         this.mergeCustomizer
@@ -44,11 +47,11 @@ export class Krok1Component implements OnInit {
   }
 
   private mergeCustomizer = (objValue, srcValue) => {
-    if (_.isArray(objValue)) {
-      if (_.isPlainObject(objValue[0]) || _.isPlainObject(srcValue[0])) {
+    if (isArray(objValue)) {
+      if (isPlainObject(objValue[0]) || isPlainObject(srcValue[0])) {
         return srcValue.map(src => {
-          const obj = _.find(objValue, { id: src.typ });
-          return _.mergeWith(obj || {}, src, this.mergeCustomizer);
+          const obj = find(objValue, { id: src.typ });
+          return mergeWith(obj || {}, src, this.mergeCustomizer);
         });
       }
       return srcValue;

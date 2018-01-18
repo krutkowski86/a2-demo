@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrenciesService } from '../currencies.service';
-import { orderBy } from 'lodash';
+import orderBy from 'lodash/orderBy';
 
 @Component({
   selector: 'app-currencies-list',

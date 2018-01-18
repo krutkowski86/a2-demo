@@ -8,185 +8,160 @@ export const arrayKeys = {
 };
 
 interface FieldModel {
-  $key: string;
+  $key?: string;
   visible?: boolean;
-  pola: {
+  sections?: SectionModel;
+  fields: {
     [index: string]: {
       init?: string | number;
       disabled?: boolean;
       validators?: { key: string; value?: string | number }[];
     };
   };
-  sekcje?: SectionModel;
+}
+
+interface ArrayModel {
+  types: {
+    [index: string]: FieldModel;
+  };
 }
 
 interface SectionModel {
-  [index: string]: FieldModel | Array<FieldModel>;
+  [index: string]: FieldModel | ArrayModel;
 }
 
 interface ViewModel {
-  sekcje: SectionModel;
+  sections: SectionModel;
 }
 
 export const DaneosoboweView: ViewModel = {
-  sekcje: {
-    osoby: [
-      {
-        $key: 'UBJ',
-        pola: {
-          typ: {
-            init: 'F'
-          },
-          imie: {
-            disabled: true,
-            init: 'Stefan',
-            validators: [
-              {
-                key: 'required'
-              }
-            ]
-          },
-          imie2: {},
-          nazwisko: {},
-          pesel: {},
-          dataOtrzymaniaPrawaJazdy: {},
-          telefon: {},
-          email: {}
-        }
-      }
-    ]
-  }
-};
-
-export const DaneosoboweView2: ViewModel = {
-  sekcje: {
-    osoby: [
-      {
-        $key: 'UBJ',
-        pola: {
-          typ: {
-            init: 'F'
-          },
-          imie: {
-            disabled: true,
-            init: 'Stefan',
-            validators: [
-              {
-                key: 'required'
-              }
-            ]
-          },
-          imie2: {},
-          nazwisko: {},
-          pesel: {},
-          dataOtrzymaniaPrawaJazdy: {},
-          telefon: {},
-          email: {}
-        },
-        sekcje: {
-          adresy: [
-            {
-              $key: 'K',
-              pola: {
-                typ: {
-                  init: 'K'
-                },
-                ulica: {
-                  disabled: true,
-                  init: 'Polna'
-                },
-                nrDomu: {},
-                nrMieszkania: {
-                  validators: [
-                    {
-                      key: 'required'
-                    }
-                  ]
-                },
-                kodPocztowy: {},
-                miasto: {}
-              }
+  sections: {
+    osoby: {
+      types: {
+        ZUB: {
+          fields: {
+            rodzajOsoby: {
+              init: 'ZUB'
             },
-            {
-              $key: 'S',
-              pola: {
-                typ: {
-                  init: 'S'
+            typ: {
+              init: 'F'
+            },
+            imie: {
+              disabled: true,
+              init: 'Stefan',
+              validators: [
+                {
+                  key: 'required'
+                }
+              ]
+            },
+            imie2: {},
+            nazwisko: {
+              validators: [
+                {
+                  key: 'required'
+                }
+              ]
+            },
+            pesel: {
+              validators: [
+                {
+                  key: 'required'
+                }
+              ]
+            },
+            dataOtrzymaniaPrawaJazdy: {},
+            telefon: {},
+            email: {}
+          },
+          sections: {
+            adresy: {
+              types: {
+                K: {
+                  fields: {
+                    typ: {
+                      init: 'K'
+                    },
+                    ulica: {
+                      disabled: true,
+                      init: 'Polna'
+                    },
+                    nrDomu: {},
+                    nrMieszkania: {
+                      validators: [
+                        {
+                          key: 'required'
+                        }
+                      ]
+                    },
+                    kodPocztowy: {},
+                    miasto: {}
+                  }
                 },
-                ulica: {},
-                nrDomu: {},
-                nrMieszkania: {},
-                kodPocztowy: {},
-                miasto: {}
+                S: {
+                  fields: {
+                    typ: {
+                      init: 'S'
+                    },
+                    ulica: {},
+                    nrDomu: {},
+                    nrMieszkania: {},
+                    kodPocztowy: {},
+                    miasto: {}
+                  }
+                }
               }
             }
-          ]
-        }
-      },
-      {
-        $key: 'UBE',
-        visible: false,
-        pola: {
-          typ: {
-            init: 'F'
-          },
-          imie: {
-            disabled: true,
-            init: 'Stefan',
-            validators: [
-              {
-                key: 'required'
-              }
-            ]
-          },
-          imie2: {},
-          nazwisko: {},
-          pesel: {},
-          dataOtrzymaniaPrawaJazdy: {},
-          telefon: {},
-          email: {}
+          }
         },
-        sekcje: {
-          adresy: [
-            {
-              $key: 'K',
-              visible: false,
-              pola: {
-                typ: {
-                  init: 'K'
-                },
-                ulica: {
-                  disabled: true,
-                  init: 'Polna'
-                },
-                nrDomu: {},
-                nrMieszkania: {
-                  validators: [
-                    {
-                      key: 'required'
-                    }
-                  ]
-                },
-                kodPocztowy: {},
-                miasto: {}
-              }
+        UBE: {
+          hide: true,
+          fields: {
+            rodzajOsoby: {
+              init: 'UBE'
             },
-            {
-              $key: 'S',
-              pola: {
-                typ: {
-                  init: 'S'
-                },
-                ulica: {},
-                nrDomu: {},
-                nrMieszkania: {},
-                kodPocztowy: {},
-                miasto: {}
+            typ: {
+              init: 'F'
+            },
+            imie: {
+              init: 'Marian',
+              validators: [
+                {
+                  key: 'required'
+                }
+              ]
+            },
+            imie2: {},
+            nazwisko: {},
+            pesel: {},
+            dataOtrzymaniaPrawaJazdy: {},
+            telefon: {},
+            email: {}
+          },
+          sections: {
+            adresy: {
+              types: {
+                K: {
+                  visible: false,
+                  fields: {
+                    typ: {
+                      init: 'S'
+                    },
+                    ulica: {},
+                    nrDomu: {},
+                    nrMieszkania: {},
+                    kodPocztowy: {},
+                    miasto: {}
+                  }
+                }
               }
             }
-          ]
+          }
         }
       }
-    ]
+    },
+    abc: {
+      fields: {}
+    }
   }
 };

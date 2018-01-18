@@ -14,19 +14,7 @@ export class OsobaComponent implements OnInit {
 
   constructor(private _formService: FormsService) {}
 
-  ngOnInit() {
-    if (this.viewConfig.sekcje && this.viewConfig.sekcje.adresy) {
-      this.parentForm.addControl('adresy', new FormArray([]));
-      const adresyControl: FormArray = <FormArray>this.parentForm.controls
-        .adresy;
-      const listaAdresow: Array<any> = this.viewConfig.sekcje.adresy;
-      listaAdresow.forEach(adres => {
-        const adresFormGroup = new FormGroup({});
-        this._formService.initGroupControls(adresFormGroup, adres.pola);
-        adresyControl.push(adresFormGroup);
-      });
-    }
-  }
+  ngOnInit() {}
 
   checkValue(field) {
     console.log(this.parentForm.controls[field].value);
@@ -36,12 +24,13 @@ export class OsobaComponent implements OnInit {
     return this.parentForm.get('adresy') as FormArray;
   }
 
-  dodajAdres() {
+  dodajAdres(typAdresy) {
     const adresyControl: FormArray = <FormArray>this.parentForm.controls.adresy;
-    const adresK = this.viewConfig.sekcje.adresy[0];
-    const adresFormGroup = new FormGroup({});
-    this._formService.initGroupControls(adresFormGroup, adresK.pola);
-    adresyControl.push(adresFormGroup);
+    console.log(this.viewConfig);
+    // const adresK = this.viewConfig.sekcje.adresy[0];
+    // const adresFormGroup = new FormGroup({});
+    // this._formService.initGroupControls(adresFormGroup, adresK.pola);
+    // adresyControl.push(adresFormGroup);
   }
 
   usunAdres(index) {
