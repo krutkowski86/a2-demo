@@ -2,7 +2,7 @@
   <fieldset class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <h6>UBEZPIECZAJĄCY</h6>
+        <h5>Osoba: {{parentForm.value.rodzajOsoby}}</h5>
         <div class="form-group">
           <div class="row">
             <label class="col-form-label col-md-3 pt-0">Typ osoby</label>
@@ -29,7 +29,7 @@
         <div class="form-group row">
           <label for="imie2" class="col-md-3 col-form-label">Drugie imię</label>
           <div class="col-md-9">
-            <input type="text" class="form-control" id="imie2" formControlName="imie2" (click)="checkValue('imie')">
+            <input type="text" class="form-control" id="imie2" formControlName="imie2">
           </div>
         </div>
         <div class="form-group row">
@@ -64,13 +64,15 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <button type="button" class="btn btn-primary" (click)="dodajAdres()">Dodaj adres</button>
-        <div class="row" *ngFor="let adres of adresy?.controls;let i = index">
+        <button type="button" class="btn btn-primary" (click)="createAdresForm('K')">Dodaj adres K</button>
+        <button type="button" class="btn btn-primary" (click)="createAdresForm('S')">Dodaj adres S</button>
+        <div class="row" *ngFor="let adres of adresy?.controls;let i = index; let last = last">
           <div class="col-12">
             <div class="text-right">
-              <button type="buttom" class="btn btn-danger" (click)="usunAdres(i)">X</button>
+              <button type="buttom" class="btn btn-danger" (click)="removeAdresForm(i)">X</button>
             </div>
             <app-adres-form [parentForm]="adres"></app-adres-form>
+            <hr *ngIf="!last" class="mb-4">
           </div>
         </div>
       </div>

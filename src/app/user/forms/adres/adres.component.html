@@ -1,34 +1,34 @@
 <div [formGroup]="parentForm">
   <div class="form-adres">
-    <h6>Adres zamieszkania</h6>
+    <h6>Adres: {{parentForm.value.typ}}</h6>
     <div class="form-group row">
-      <label for="ulica" class="col-md-3 col-form-label">Ulica</label>
+      <label class="col-md-3 col-form-label">Ulica</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="ulica" name="ulica" formControlName="ulica">
+        <input type="text" class="form-control" formControlName="ulica">
       </div>
     </div>
     <div class="form-group row">
-      <label for="nrDomu" class="col-md-3 col-form-label">Numer domu</label>
+      <label class="col-md-3 col-form-label">Numer domu</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="nrDomu" name="nrDomu" formControlName="nrDomu">
+        <input type="text" class="form-control" formControlName="nrDomu">
       </div>
     </div>
     <div class="form-group row">
-      <label for="nrMieszkania" class="col-md-3 col-form-label">Numer mieszkania</label>
+      <label class="col-md-3 col-form-label">Numer mieszkania</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="nrMieszkania" name="nrMieszkania" formControlName="nrMieszkania">
+        <input type="text" class="form-control" formControlName="nrMieszkania">
       </div>
     </div>
     <div class="form-group row">
-      <label for="kodPocztowy" class="col-md-3 col-form-label">Kod pocztowy</label>
+      <label class="col-md-3 col-form-label">Kod pocztowy</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="kodPocztowy" name="kodPocztowy" formControlName="kodPocztowy">
+        <input type="text" class="form-control" formControlName="kodPocztowy">
       </div>
     </div>
     <div class="form-group row">
-      <label for="miasto" class="col-md-3 col-form-label">Miejscowość</label>
+      <label class="col-md-3 col-form-label">Miejscowość</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="miasto" name="miasto" formControlName="miasto">
+        <input type="text" class="form-control" formControlName="miasto">
       </div>
     </div>
   </div>

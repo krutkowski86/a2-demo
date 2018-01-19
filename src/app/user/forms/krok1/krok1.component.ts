@@ -38,11 +38,7 @@ export class Krok1Component implements OnInit {
 
   onSubmit({ value, valid }) {
     if (valid) {
-      this.model = mergeWith(
-        this.model,
-        this.krok1Form.getRawValue(),
-        this.mergeCustomizer
-      );
+      this.model = mergeWith(this.model, this.krok1Form.getRawValue(), this.mergeCustomizer);
     }
   }
 
@@ -50,7 +46,7 @@ export class Krok1Component implements OnInit {
     if (isArray(objValue)) {
       if (isPlainObject(objValue[0]) || isPlainObject(srcValue[0])) {
         return srcValue.map(src => {
-          const obj = find(objValue, { id: src.typ });
+          const obj = find(objValue, { sys_id: src.sys_id });
           return mergeWith(obj || {}, src, this.mergeCustomizer);
         });
       }

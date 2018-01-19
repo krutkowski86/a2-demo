@@ -9,7 +9,7 @@ export class FormsService {
     return view;
   }
 
-  initGroupControls(formGroup: FormGroup, config, zlecModel?) {
+  initGroupControls(formGroup: FormGroup, config) {
     if (config.fields) {
       const fields = config.fields;
       Object.keys(fields)
@@ -32,7 +32,7 @@ export class FormsService {
     }
   }
 
-  initArrayGroups(formArray: FormArray, config, zlecModel?) {
+  initArrayGroupsAndControls(formArray: FormArray, config) {
     Object.keys(config.types).forEach((type, index) => {
       const typeConfig = config.types[type];
       const typeFormGroup = new FormGroup({});

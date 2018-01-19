@@ -9,7 +9,7 @@ export const arrayKeys = {
 
 interface FieldModel {
   $key?: string;
-  visible?: boolean;
+  visible: boolean;
   sections?: SectionModel;
   fields: {
     [index: string]: {
@@ -39,6 +39,7 @@ export const DaneosoboweView: ViewModel = {
     osoby: {
       types: {
         ZUB: {
+          visible: true,
           fields: {
             rodzajOsoby: {
               init: 'ZUB'
@@ -78,6 +79,7 @@ export const DaneosoboweView: ViewModel = {
             adresy: {
               types: {
                 K: {
+                  visible: true,
                   fields: {
                     typ: {
                       init: 'K'
@@ -99,6 +101,7 @@ export const DaneosoboweView: ViewModel = {
                   }
                 },
                 S: {
+                  visible: true,
                   fields: {
                     typ: {
                       init: 'S'
@@ -115,7 +118,7 @@ export const DaneosoboweView: ViewModel = {
           }
         },
         UBE: {
-          hide: true,
+          visible: true,
           fields: {
             rodzajOsoby: {
               init: 'UBE'
@@ -142,12 +145,27 @@ export const DaneosoboweView: ViewModel = {
             adresy: {
               types: {
                 K: {
-                  visible: false,
+                  visible: true,
+                  fields: {
+                    typ: {
+                      init: 'K'
+                    },
+                    ulica: {},
+                    nrDomu: {},
+                    nrMieszkania: {},
+                    kodPocztowy: {},
+                    miasto: {}
+                  }
+                },
+                S: {
+                  visible: true,
                   fields: {
                     typ: {
                       init: 'S'
                     },
-                    ulica: {},
+                    ulica: {
+                      validators: [{ key: 'required' }]
+                    },
                     nrDomu: {},
                     nrMieszkania: {},
                     kodPocztowy: {},
@@ -159,9 +177,6 @@ export const DaneosoboweView: ViewModel = {
           }
         }
       }
-    },
-    abc: {
-      fields: {}
     }
   }
 };

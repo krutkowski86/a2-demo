@@ -1,17 +1,18 @@
 <div [formGroup]="parentForm">
   <div class="row">
     <div class="col-12">
-      <button type="button" class="btn btn-primary" (click)="dodajOsobe('UBE')">Dodaj osobę typu UBE</button>
-      <button type="button" class="btn btn-primary" (click)="dodajOsobe('ZUB')">Dodaj osobę typu ZUB</button>
+      <button type="button" class="btn btn-primary" (click)="createOsobaForm('UBE',true)">Dodaj osobę typu UBE</button>
+      <button type="button" class="btn btn-primary" (click)="createOsobaForm('ZUB',true)">Dodaj osobę typu ZUB</button>
+      <hr class="mb-4">
     </div>
   </div>
-  <div *ngFor="let osoba of osoby?.controls; let i = index">
+  <div *ngFor="let osoba of osoby?.controls; let i = index; let last = last">
     <div class="row">
       <div class="col-12 text-right">
-        <button type="button" class="btn btn-danger" (click)="usunOsobe(i)">Usuń osobę</button>
+        <button type="button" class="btn btn-danger" (click)="removeOsobaForm(i)">Usuń osobę</button>
       </div>
     </div>
-    <app-osoba [parentForm]="osoba" [viewConfig]="viewConfig"></app-osoba>
+    <app-osoba [parentForm]="osoba" [viewConfig]="viewConfig.types[osoba.value.rodzajOsoby]"></app-osoba>
     <div class="col-12" *ngIf="i === 0">
       <div class="form-group">
         <div class="row">
@@ -33,5 +34,6 @@
         </div>
       </div>
     </div>
+    <hr *ngIf="!last" class="mb-4">
   </div>
 </div>
