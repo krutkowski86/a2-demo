@@ -30,7 +30,7 @@ export class Krok1Component implements OnInit {
     this.viewConfig = this._formService.mapConfigView(
       this._route.snapshot.parent.data['viewConfig']
     );
-    // console.log(this.viewConfig);
+
     this.krok1Form.valueChanges.forEach(formModel => {
       console.log(formModel);
     });
@@ -40,6 +40,10 @@ export class Krok1Component implements OnInit {
     if (valid) {
       this.model = mergeWith(this.model, this.krok1Form.getRawValue(), this.mergeCustomizer);
     }
+  }
+
+  get rawValue() {
+    return this.krok1Form.getRawValue();
   }
 
   private mergeCustomizer = (objValue, srcValue) => {

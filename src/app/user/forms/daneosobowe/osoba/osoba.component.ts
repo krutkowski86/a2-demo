@@ -26,15 +26,6 @@ export class OsobaComponent implements OnInit {
     }
   }
 
-  // if (typeConfig.sections && typeConfig.sections.adresy) {
-  //   osobaFormGroup.addControl('adresy', new FormArray([]));
-  //   const adresyArrayControl = <FormArray>osobaFormGroup.controls.adresy;
-  //   this._formService.initArrayGroupsAndControls(
-  //     adresyArrayControl,
-  //     typeConfig.sections.adresy
-  //   );
-  // }
-
   get adresy(): FormArray {
     return this.parentForm.get('adresy') as FormArray;
   }
@@ -45,7 +36,7 @@ export class OsobaComponent implements OnInit {
   }
 
   createAdresForm(typAdresu: string, forcePush?: boolean) {
-    const adresyArrayControl: FormArray = <FormArray>this.adresy;
+    const adresyArrayControl = <FormArray>this.adresy;
     const typeConfig = this.viewConfig.sections.adresy.types[typAdresu];
     console.log(typeConfig);
     if (typeConfig.visible || forcePush) {

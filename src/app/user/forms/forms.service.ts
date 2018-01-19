@@ -32,16 +32,6 @@ export class FormsService {
     }
   }
 
-  initArrayGroupsAndControls(formArray: FormArray, config) {
-    Object.keys(config.types).forEach((type, index) => {
-      const typeConfig = config.types[type];
-      const typeFormGroup = new FormGroup({});
-      typeFormGroup.addControl('sys_id', new FormControl(index));
-      this.initGroupControls(typeFormGroup, typeConfig);
-      formArray.push(typeFormGroup);
-    });
-  }
-
   private mapField(field) {
     if (field.type === 'array') {
       return new FormArray([]);
@@ -51,10 +41,7 @@ export class FormsService {
   }
 
   private formControl(field) {
-    return [
-      { value: field.init, disabled: false },
-      this.fieldValidators(field.validators)
-    ];
+    return [{ value: field.init, disabled: false }, this.fieldValidators(field.validators)];
   }
 
   private fieldValidators(validators: { key; value? }[] = []) {
