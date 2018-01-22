@@ -118,7 +118,7 @@ export const DaneosoboweView: ViewModel = {
           }
         },
         UBE: {
-          visible: true,
+          visible: false,
           fields: {
             rodzajOsoby: {
               init: 'UBE'

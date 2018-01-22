@@ -1,7 +1,7 @@
 <form (ngSubmit)="onSubmit(krok1Form);submitted = true" [formGroup]="krok1Form" [class.ng-submitted]="submitted">
   <div *ngIf="viewConfig.sections.osoby">
     <h4>Dane osobowe</h4>
-    <app-daneosobowe [parentForm]="krok1Form" [viewConfig]="viewConfig.sections.osoby"></app-daneosobowe>
+    <app-daneosobowe [parentForm]="krok1Form" [viewConfig]="viewConfig.sections.osoby" [parentModel]="zlecModel"></app-daneosobowe>
   </div>
   <button type="submit" class="btn btn-success float-right">Submit</button>
   <div class="row">
@@ -10,7 +10,7 @@
       <pre>{{krok1Form.controls.errors | json}}</pre>
     </div>
     <div class="col-6">
-      <pre>{{model |json}}</pre>
+      <pre>{{zlecModel |json}}</pre>
     </div>
   </div>
 

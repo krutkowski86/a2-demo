@@ -16,7 +16,7 @@ export class Krok1Component implements OnInit {
   krok1Form: FormGroup;
   viewConfig;
   submitted = false;
-  model = {};
+  zlecModel;
 
   constructor(
     private _route: ActivatedRoute,
@@ -24,21 +24,25 @@ export class Krok1Component implements OnInit {
     private _formService: FormsService
   ) {
     this.krok1Form = this._fb.group({});
+    this.zlecModel = this._formService.getModel('zlec') || {};
   }
 
   ngOnInit() {
-    this.viewConfig = this._formService.mapConfigView(
-      this._route.snapshot.parent.data['viewConfig']
-    );
+    this.viewConfig = this._route.snapshot.parent.data['viewConfig'];
 
     this.krok1Form.valueChanges.forEach(formModel => {
-      console.log(formModel);
+      // console.log(formModel);
     });
   }
 
   onSubmit({ value, valid }) {
     if (valid) {
-      this.model = mergeWith(this.model, this.krok1Form.getRawValue(), this.mergeCustomizer);
+      this.zlecModel = mergeWith(
+        this.zlecModel,
+        this.krok1Form.getRawValue(),
+        this.mergeCustomizer
+      );
+      this._formService.setModel(this.zlecModel, 'zlec');
     }
   }
 

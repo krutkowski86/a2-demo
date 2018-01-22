@@ -1,37 +1,14 @@
 import { Adres } from '../adres/adres.config';
 
-export class Osoba {
-  constructor(
-    public typ: string,
-    public imie: string,
-    public imie2: string,
-    public nazwisko: string,
-    public pesel: string,
-    public dataOtrzymaniaPrawaJazdy: string,
-    public telefon: string,
-    public email: string,
-    public adresy: Adres[]
-  ) {}
+export interface Osoba {
+  sys_id: number;
+  rodzajOsoby: 'ZUB' | 'UBE';
+  imie?: string;
+  imie2?: string;
+  nazwisko?: string;
+  pesel?: string;
+  dataOtrzymaniaPrawaJazdy?: string;
+  telefon?: string;
+  email?: string;
+  adresy?: Adres[];
 }
-
-export const DaneosoboweFormModel = {
-  imie: {
-    disabled: true,
-    validators: [
-      {
-        key: 'required'
-      },
-      {
-        key: 'minLength',
-        value: 5
-      }
-    ]
-  },
-  typ: {},
-  imie2: {},
-  nazwisko: {},
-  pesel: {},
-  dataOtrzymaniaPrawaJazdy: {},
-  telefon: {},
-  email: {}
-};
