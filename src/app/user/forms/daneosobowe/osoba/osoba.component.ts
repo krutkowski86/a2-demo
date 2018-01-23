@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { FormsService } from '../../forms.service';
 import has from 'lodash/has';
 import filter from 'lodash/filter';
+import { Adres } from '../../adres/adres.config';
 
 @Component({
   selector: 'app-osoba',
@@ -27,6 +28,7 @@ export class OsobaComponent implements OnInit {
         this.osobaModel.adresy = [];
       }
       Object.keys(this.viewConfig.sections.adresy.types).forEach(adresTyp => {
+        console.log(adresTyp);
         const adresy = filter(this.osobaModel.adresy, { typ: adresTyp });
         if (adresy.length > 0) {
           adresy.forEach(adres => {
@@ -48,7 +50,7 @@ export class OsobaComponent implements OnInit {
     osobyArrayControl.removeAt(index);
   }
 
-  createAdresForm(typAdresu: string, string, forcePush?: boolean, adresModel?) {
+  createAdresForm(typAdresu: string, forcePush?: boolean, adresModel?) {
     const adresyArrayControl = <FormArray>this.adresy;
     const typeConfig = this.viewConfig.sections.adresy.types[typAdresu];
     if (typeConfig.visible) {

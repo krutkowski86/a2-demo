@@ -61,6 +61,10 @@ export const DaneosoboweView: ViewModel = {
               validators: [
                 {
                   key: 'required'
+                },
+                {
+                  key: 'minLength',
+                  value: 5
                 }
               ]
             },
